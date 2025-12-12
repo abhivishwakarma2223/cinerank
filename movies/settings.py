@@ -20,7 +20,7 @@ TMDB_BASE_URL = 'https://api.themoviedb.org/3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 LOGIN_URL = '/login/'
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cinerank-fosj.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -87,5 +87,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')

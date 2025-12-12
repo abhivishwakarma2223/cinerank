@@ -631,33 +631,28 @@ class ProfileForm(forms.ModelForm):
             'location': forms.TextInput(attrs={'placeholder': 'City, Country', 'class': 'input'}),
         }
 
+import requests
 
+def get_movie_data(query):
+    # Your proxy details
+    proxies = {
+        'http': 'socks5h://127.0.0.1:9050',
+        'https': 'socks5h://127.0.0.1:9050',
+        # If authentication is needed:
+        # "https": "http://username:password@your_proxy_ip:port"
+    }
+    response = requests.get(url, proxies=proxies)
 
-
-@login_required
-def edit_profile(request):
-    # ensure profile instance exists
+    url = f"https://api.themoviedb.org/3/search/movie?query={query}"
+    
     try:
-        profile = request.user.profile  # expects related_name='profile'
-    except profile_pic.DoesNotExist:
-        profile = profile_pic.objects.create(user=request.user)
+        # Pass the proxies dictionary here
+        response = requests.get(url, proxies=proxies)
+        return response.json()
+    except Exception as e:
+        print(f"Error fetching data: {e}")
+        return None
 
-    if request.method == 'POST':
-        uform = UserUpdateForm(request.POST, instance=request.user)
-        pform = ProfileForm(request.POST, request.FILES, instance=profile)
 
-        if uform.is_valid() and pform.is_valid():
-            uform.save()
-            pform.save()
-            messages.success(request, 'Profile updated successfully.')
-            return redirect('profile')  # or 'edit_profile' if you want to stay
-        else:
-            messages.error(request, 'Please correct the errors below.')
-    else:
-        uform = UserUpdateForm(instance=request.user)
-        pform = ProfileForm(instance=profile)
 
-    return render(request, 'edit_profile.html', {
-        'uform': uform,
-        'pform': pform,
-    })
+
