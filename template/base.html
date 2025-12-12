@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="toggle-watchlist-url" content="{% url 'toggle_watchlist' %}">
+    <meta name="rating-submit-url" content="{% url 'submit_rating' %}">
+
+    <title>CineRank Movie Recommendations</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="stylish-navbar">
+    <div class="nav-content">
+
+        <a href="{% url 'index' %}" class="nav-item home-icon" aria-label="Home">
+            <i class="fas fa-home"></i>
+        </a>
+
+        <div class="search-container">
+            <form id="search-form" class="search-input-group">
+                <input type="text" id="movie-search-input" placeholder="Search..." class="search-input" aria-label="Search field">
+                <i class="fas fa-search search-icon" onclick="document.getElementById('search-form')"></i>
+            </form>
+            
+            <a href="{% url 'watchlist' %}" class="nav-item watchlist">Watchlist</a>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="nav-item-auth">{{ user.username }}</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="nav-item-auth">Login</a>
+            {% endif %}
+
+            <a href="{% url 'profile' %}" class="nav-item profile">Profile</a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="message-container">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<main id="results-container" class="movie-results-grid">
+    {% block body %}
+    {% endblock %}
+</main>
+
+
+<footer class="stylish-footer">
+    <div class="footer-container">
+        <div class="footer-section brand-info">
+            <h3 class="footer-heading"><i class="fas fa-video"></i> CineRank</h3>
+            <p>&copy; 2025 CineRank Recommendations. <br>Built on User Ratings.</p>
+        </div>
+
+        <div class="footer-section footer-links">
+            <h3 class="footer-heading">Quick Links</h3>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'watchlist' %}">Watchlist</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section social-legal">
+            <h3 class="footer-heading">Connect</h3>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="ratingModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeRatingModal()">&times;</span>
+        <h3 id="modal-title">Rate Movie Title</h3>
+        <p>Your rating (1-5):</p>
+        <div id="star-rating" class="star-rating-icons">
+        </div>
+        <button id="submitRatingBtn" class="submit-btn" style="margin-top: 20px;">Submit Rating</button>
+    </div>
+</div>
+
+
+
+<script>
+    const TMDB_BASE_URL_GLOBAL = "{{ TMDB_BASE_URL }}";
+    const TMDB_API_KEY_GLOBAL = "{{ TMDB_API_KEY }}";
+   
+</script>
+
+<script src="{% static 'javascript/abhi.js' %}"></script>
+
+</body>
+</html>

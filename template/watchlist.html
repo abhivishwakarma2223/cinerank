@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="watchlist-container">
+    <h1 class="watchlist-heading"><i class="fas fa-list-ul"></i> Your CineRank Watchlist</h1>
+
+    <div id="watchlist-grid" class="watchlist-grid">
+        {% for item in items %}
+            <div class="movie-card watchlist-item-card" data-tmdb-id="{{ item.tmdb_id }}">
+                
+                <div class="card-poster">
+                    {% if item.poster_path %}
+                        <img src="https://image.tmdb.org/t/p/w200{{ item.poster_path }}" alt="{{ item.title }} Poster">
+                    {% else %}
+                        <div class="no-poster">No Image Available</div>
+                    {% endif %}
+                </div>
+
+                <div class="card-details">
+                    <h3>{{ item.title }}</h3>
+                    
+                    <p class="release-date">
+                        Released: {{ item.release_date|default:"N/A"|date:"Y" }}
+                    </p>
+
+                    {% if item.overview %}
+                        <p class="movie-overview">
+                            {{ item.overview|truncatechars:100 }}
+                        </p>
+                    {% endif %}
+                    
+                    {% if item.vote_average %}
+                        <p class="movie-rating tmdb-rating">
+                            <i class="fas fa-star" style="color: grey;"></i> TMDB: <strong>{{ item.vote_average|floatformat:1 }}</strong>
+                        </p>
+                    {% endif %}
+                    
+                    <div class="user-status-group">
+                        <p class="my-rating">
+                            {% if item.user_rating %}
+                                {# show filled stars equal to user_rating #}
+                                {% for i in "12345"|slice:":5" %}
+                                    {% if forloop.counter0 < item.user_rating %}
+                                        <i class="fas fa-star" style="color: gold;"></i>
+                                    {% else %}
+                                        <i class="fas fa-star" style="color: #e6e6e6;"></i>
+                                    {% endif %}
+                                {% endfor %}
+                                <span style="margin-left: 8px;">({{ item.user_rating }} / 5)</span>
+                            {% else %}
+                                <span class="no-rating-text">Not yet rated</span>
+                            {% endif %}
+                        </p>
+                        
+                        <div class="watch-actions">
+                            {% if item.watched %}
+                                <span class="watched-status"><i class="fas fa-check-circle"></i> Watched</span>
+                                {# Rate button shown only when watched #}
+                               <br> <button type="button"
+                                        class="rate-btn"
+                                        data-tmdb-id="{{ item.tmdb_id }}"
+                                        data-title="{{ item.title }}">
+                                    <i class="fas fa-star"></i> Rate
+                                </button>
+                            {% else %}
+                                <button type="button"
+                                        class="mark-watched-btn"
+                                        data-tmdb-id="{{ item.tmdb_id }}"
+                                        data-title="{{ item.title }}">
+                                    <i class="fas fa-eye"></i> Mark as Watched
+                                </button><br>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="remove-from-watchlist-btn" 
+                            data-tmdb-id="{{ item.tmdb_id }}" 
+                            data-title="{{ item.title }}">
+                        <i class="fas fa-trash-alt"></i> Remove
+                    </button>
+                </div>
+            </div>
+        {% empty %}
+            <div class="empty-watchlist">
+                <p>Your watchlist is empty!</p>
+                <p>Go to the search page to find movies and TV shows to add.</p>
+                <a href="{% url 'index' %}" class="submit-btn" style="width: auto; background-color: #000000; display: inline-block; padding: 10px 20px;">
+                    <i class="fas fa-search"></i> Start Searching
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+{# ===== Rating Modal (include once) ===== #}
+<div id="ratingModal" class="rating-modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="rating-modal-backdrop" tabindex="-1"></div>
+  <div class="rating-modal-content" role="document">
+    <button class="rating-modal-close" aria-label="Close rating" id="closeRatingModalBtn">&times;</button>
+    <h3 id="modal-title">Rate</h3>
+
+    <div id="star-rating" class="star-rating" aria-label="Star rating" role="radiogroup"></div>
+
+    <div class="rating-actions">
+      <button id="submitRatingBtn" class="submit-btn">Submit Rating</button>
+      <button id="cancelRatingBtn" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

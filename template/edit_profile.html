@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="ep-page-wrapper">
+  
+  <div class="ep-container">
+    <h2 class="ep-title">Edit Profile</h2>
+
+    {% if messages %}
+      <div class="ep-messages">
+        {% for message in messages %}
+          <div class="ep-alert ep-alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="ep-form">
+      {% csrf_token %}
+
+      <div class="ep-grid-row">
+        <div class="ep-input-group">
+          <label for="{{ uform.first_name.id_for_label }}">First Name</label>
+          {{ uform.first_name }}
+        </div>
+
+        <div class="ep-input-group">
+          <label for="{{ uform.last_name.id_for_label }}">Last Name</label>
+          {{ uform.last_name }}
+        </div>
+      </div>
+
+      <div class="ep-input-group full-width">
+        <label for="{{ uform.email.id_for_label }}">Email Address</label>
+        {{ uform.email }}
+      </div>
+
+      <div class="ep-divider"></div>
+
+      <div class="ep-profile-section">
+        
+        <div class="ep-image-col">
+          <label class="ep-label-highlight">Profile Photo</label>
+          
+          <div class="ep-avatar-wrapper">
+            {% if request.user.profile.image %}
+              <img id="ep-image-preview" src="{{ request.user.profile.image.url }}" alt="Profile Preview">
+            {% else %}
+              <img id="ep-image-preview" src="{% static 'images/default-avatar.png' %}" alt="Default Avatar">
+            {% endif %}
+          </div>
+          
+          <div class="ep-file-input-wrapper">
+            {{ pform.image }}
+          </div>
+        </div>
+
+        <div class="ep-details-col">
+          <div class="ep-input-group">
+            <label for="{{ pform.location.id_for_label }}">Location</label>
+            {{ pform.location }}
+          </div>
+
+          <div class="ep-input-group">
+            <label for="{{ pform.bio.id_for_label }}">Bio</label>
+            {{ pform.bio }}
+          </div>
+        </div>
+      </div>
+
+      <div class="ep-actions">
+        <button type="submit" class="ep-btn ep-btn-primary">Save Changes</button>
+        <a href="{% url 'profile' %}" class="ep-btn ep-btn-ghost">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Image preview script
+  document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.querySelector('.ep-file-input-wrapper input[type="file"]');
+    const preview = document.getElementById('ep-image-preview');
+    
+    if (fileInput && preview) {
+      fileInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            preview.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

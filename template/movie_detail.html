@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/index-style.css' %}"> {# optional style reuse #}
+
+<div class="container" style="padding: 28px 18px;">
+  <div style="display:flex; gap:20px; flex-wrap:wrap;">
+    <div style="flex:0 0 300px;">
+      {% if movie.poster_path %}
+        <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}" style="width:100%; border-radius:10px;">
+      {% else %}
+        <div style="width:100%; height:450px; background:#0b1220; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#9aa6bf;">No Image</div>
+      {% endif %}
+    </div>
+
+    <div style="flex:1 1 400px; color: #eaf0ff;">
+      <h1 style="margin-top:0;">{{ movie.title }}</h1>
+      <p class="muted">Released: {{ movie.release_date|default:"N/A" }} • Runtime: {{ movie.runtime|default:"N/A" }} mins</p>
+      <p style="margin-top:12px;">{{ movie.overview|default:"Overview not available." }}</p>
+
+      {% if credits.cast %}
+        <h3 style="margin-top:18px;">Top Cast</h3>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          {% for c in credits.cast|slice:":6" %}
+            <div style="min-width:110px; max-width:120px; text-align:center; color:#cfe0ff;">
+              {% if c.profile_path %}
+                <img src="https://image.tmdb.org/t/p/w185{{ c.profile_path }}" alt="{{ c.name }}" style="width:100%; border-radius:8px;">
+              {% else %}
+                <div style="width:100%; height:110px; background:#0b1220; border-radius:8px; display:flex; align-items:center; justify-content:center;">No Image</div>
+              {% endif %}
+              <div style="font-weight:600; margin-top:6px;">{{ c.name }}</div>
+              <div class="muted small">{{ c.character|truncatechars:20 }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div style="margin-top:18px;">
+        <a href="#" class="btn" onclick="event.preventDefault(); alert('Add rating / watchlist actions here');">Add to Watchlist</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1720 @@
+body {
+    /* The '..' moves up from 'css/' to 'static/' */
+   background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 40%, #000000 100%);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    min-height: 100vh;
+    padding: 0;
+    color: #ffffff;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+/* Custom Stylish Font */
+
+.stylish-navbar {
+    /* Centering and defining width */
+    width: 50%; /* Leaves 25% on the left and 25% on the right */
+    margin: 20px auto 0 auto;
+    
+    /* Style requirements */
+    background-color: transparent;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 10px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 15px;
+    transition: color 0.3s, background-color 0.3s;
+    font-weight: 100;
+    border-radius: 15px;
+    display: inline-block;
+    white-space: nowrap; /* Prevents text wrap for links */
+    font-size: 1rem;
+}
+
+.nav-item-auth {
+    color: #007bff;
+    text-decoration: none;
+    padding: 8px 15px;
+    transition: color 0.3s, background-color 0.3s;
+    font-weight: 100;
+    border-radius: 15px;
+    border: 1px solid #007bff;
+    display: inline-block;
+    white-space: nowrap; /* Prevents text wrap for links */
+    font-size: 1rem;
+}
+
+.nav-item:hover {
+    color: #e0e0e0;
+    background-color: #333333;
+}
+
+.home-icon {
+    font-size: 1.5rem;
+    padding: 8px 0; /* Adjusted for cleaner look next to text items */
+}
+
+/* Search Bar and Right-Side Grouping */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 5px;
+}
+
+.search-input {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 5px 0;
+    outline: none;
+    width: 250px; /* Default desktop width */
+    margin-left: 0%;
+}
+
+.search-input::placeholder {
+    color: #aaaaaa;
+}
+
+.search-icon {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.search-icon:hover {
+    color: #e0e0e0;
+}
+
+/* ====================================
+   2. TABLET MEDIA QUERY (max-width: 1024px)
+   ==================================== */
+/* The layout starts to feel cramped on wider screens like tablets,
+   so we increase the navbar width and adjust font sizes. */
+@media (max-width: 1024px) {
+    .stylish-navbar {
+        width: 75%; /* Navbar takes up more space */
+        padding: 10px 20px;
+    }
+
+    .search-input {
+        width: 150px; /* Slightly reduce search input width */
+    }
+    
+    .nav-item {
+        padding: 8px 10px; /* Reduce link padding */
+        font-size: 0.95rem; /* Slight font reduction */
+    }
+}
+
+
+/* ====================================
+   3. MOBILE MEDIA QUERY (max-width: 768px)
+   ==================================== */
+/* On mobile, we need a complete layout change for usability.
+   We stack the items vertically. */
+@media (max-width: 768px) {
+    .stylish-navbar {
+        width: 90%; /* Navbar takes up almost all screen width */
+        border-radius: 15px; /* Smaller rounded corners look better */
+        padding: 15px; /* Increase overall padding for touch targets */
+    }
+
+    .nav-content {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align all items to the left */
+        gap: 10px; /* Space between main sections */
+    }
+
+    /* Move the home icon to the top left and give it some space */
+    .home-icon {
+        font-size: 1.8rem; /* Make the icon larger for touch */
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+    /* Search bar and links should be separated */
+    .search-container {
+        flex-direction: column; /* Stack search and links vertically */
+        align-items: flex-start;
+        gap: 10px; /* Space between search, watchlist, login, profile */
+        width: 100%; /* Take full width of the navbar */
+    }
+    
+    /* Make the search input take more space */
+    .search-input-group {
+        width: 100%;
+        padding-bottom: 8px;
+        margin-bottom: 5px;
+    }
+
+    .search-input {
+        width: 90%; /* Input takes most of the group width */
+        font-size: 1rem;
+    }
+    
+    /* Ensure the links are also easily tappable */
+    .nav-item {
+        padding: 5px 0; /* Stacked links need less side padding */
+        font-size: 1.1rem; /* Larger font for readability/tappability */
+        border-radius: 0; /* Remove rounding for simple stacked links */
+    }
+    
+    .nav-item:hover {
+        background-color: transparent; /* Remove background hover on mobile for cleaner look */
+        color: #aaaaaa;
+    }
+}
+
+
+
+/* Styling for Messages */
+/* =========================================
+   PREMIUM CENTERED MESSAGES
+   ========================================= */
+
+.message-container {
+    width: 50%;              /* Matches your navbar width */
+    position: fixed;         /* Fixes it to the viewport so it floats */
+    top: 100px;              /* Position it just below your navbar */
+    left: 50%;               /* Move to center... */
+    transform: translateX(-50%); /* ...and perfectly align it */
+    z-index: 9999;           /* Highest priority */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;               /* Space between multiple messages */
+    pointer-events: none;    /* Lets you click through the empty space around messages */
+}
+
+/* Individual Alert Card Style */
+.alert {
+    pointer-events: auto;    /* Re-enable clicks on the message itself */
+    padding: 16px 24px;
+    border-radius: 12px;
+    
+    /* Premium Glass Effect */
+    background: rgba(20, 20, 20, 0.85); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Depth */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Text Styles */
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;        /* Text looks better left-aligned inside the card */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* Animation */
+    animation: slideDownFade 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* --- Color Variants (Glow Effects) --- */
+
+/* Success - Green Glow */
+.alert.success {
+    border-left: 4px solid #28a745;
+    background: linear-gradient(90deg, rgba(40, 167, 69, 0.15), rgba(20, 20, 20, 0.85));
+}
+
+/* Error - Red Glow */
+.alert.error {
+    border-left: 4px solid #dc3545;
+    background: linear-gradient(90deg, rgba(220, 53, 69, 0.15), rgba(20, 20, 20, 0.85));
+}
+
+/* Info - Blue Glow */
+.alert.info {
+    border-left: 4px solid #17a2b8;
+    background: linear-gradient(90deg, rgba(23, 162, 184, 0.15), rgba(20, 20, 20, 0.85));
+}
+
+/* Warning - Yellow Glow */
+.alert.warning {
+    border-left: 4px solid #ffc107;
+    background: linear-gradient(90deg, rgba(255, 193, 7, 0.15), rgba(20, 20, 20, 0.85));
+}
+
+.alert.fade-out {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9); /* Moves up slightly and shrinks */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* --- Animation Keyframes --- */
+@keyframes slideDownFade {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .message-container {
+        width: 90%; /* Wider on mobile */
+        top: 80px;
+    }
+}
+
+
+/* ====================================
+   FOOTER STYLES
+   ==================================== */
+
+.stylish-footer {
+    background-color: transparent; /* Black background to match the navbar */
+    color: #ffffff; /* White font */
+    padding: 40px 0;
+    margin-top: 50px; /* Space between content and footer */
+    font-family: 'Poppins', sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-container {
+    width: 70%; /* Slightly wider than the desktop navbar (50%) for content, but still centered */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Distribute sections */
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+    gap: 30px;
+}
+
+.footer-heading {
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    border-left: 3px solid #ffffff; /* Creative touch: subtle white line like the navbar underline */
+    padding-left: 10px;
+}
+
+/* Links and Text Styles */
+.stylish-footer p,
+.stylish-footer a {
+    color: #cccccc; /* Slightly softer white for readability */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.stylish-footer a:hover {
+    color: #ffffff; /* Bright white hover */
+}
+
+/* Link List Styles */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+/* Social Icons */
+.social-icons a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.legal-links {
+    margin-top: 20px;
+    font-size: 0.85rem;
+}
+
+/* Responsive Footer - Stacking on Mobile */
+@media (max-width: 768px) {
+    .footer-container {
+        width: 90%; /* Increase width for mobile */
+        flex-direction: column; /* Stack all sections vertically */
+        gap: 30px;
+    }
+
+    .footer-section {
+        width: 100%; /* Each section takes full width */
+    }
+
+    .social-legal {
+        text-align: left; /* Ensure text alignment is clean */
+    }
+}
+
+
+/* ====================================
+   5. RESULTS/HOME GRID STYLES (Trending & Eyecatching)
+   ==================================== */
+/* =========================================
+   1. CONTAINER & HEADERS
+   ========================================= */
+.recommendations-container {
+    max-width: 1400px;
+    /* Ensure the container takes full width of its parent */
+    width: 100%; 
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    box-sizing: border-box; /* Prevents padding from breaking width */
+}
+
+.section-header {
+    margin-bottom: 30px;
+    padding-left: 15px;
+    border-left: 5px solid #007bff; /* Accent color bar */
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.section-sub {
+    color: #aaa;
+    margin-top: 5px;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Helper Classes */
+.muted { color: #a0a0a0; }
+.small { font-size: 0.85rem; }
+
+
+/* =========================================
+   2. MOVIE GRID LAYOUT
+   ========================================= */
+.movie-results-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 25px;
+    padding-bottom: 40px;
+    width: 100%;
+    /* Ensure the grid container itself can expand */
+    box-sizing: border-box; 
+}
+
+
+/* =========================================
+   3. MOVIE CARD DESIGN
+   ========================================= */
+.movie-card {
+    /* background: #1a1a1a; */
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    width: 220PX;
+    max-width: 220px;
+    margin: auto;
+    height: auto;
+    display: block;
+}
+
+/* Hover Effect: Lift card up */
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.15);
+}
+
+
+/* =========================================
+   4. POSTER & BADGES
+   ========================================= */
+.poster {
+    position: relative;
+    width: 100%;
+    padding-top: 150%; /* Forces 2:3 Aspect Ratio (Standard Poster) */
+    background-color: #000;
+    overflow: hidden;
+}
+
+.poster img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.movie-card:hover .poster img {
+    transform: scale(1.05); /* Slight zoom on hover */
+    filter: brightness(0.8); /* Darken slightly to make play button pop */
+}
+
+/* Rating Badge (Top Right) */
+.rating-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    color: #ffc107; /* Gold */
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+/* Play/Preview Badge (Centered Overlay) */
+.play-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+    opacity: 0; /* Hidden by default */
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.5);
+    z-index: 2;
+}
+
+.movie-card:hover .play-badge {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.placeholder {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    background: #111;
+}
+
+
+/* =========================================
+   5. MOVIE INFO AREA
+   ========================================= */
+.movie-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+
+.movie-info p {
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+    color: #bbb;
+    flex-grow: 1; /* Pushes actions to bottom */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit text lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   6. ACTIONS & BUTTONS
+   ========================================= */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    gap: 6px;
+}
+
+/* Primary Button */
+.btn:not(.ghost) {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn:not(.ghost):hover {
+    background-color: #0056b3;
+}
+
+/* Ghost Button (Secondary) */
+.btn.ghost {
+    background-color: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+}
+
+.btn.ghost:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+    border-color: #fff;
+}
+
+
+/* =========================================
+   7. EMPTY & GUEST STATES
+   ========================================= */
+.hero-guest, .empty-reco {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border-radius: 15px;
+    border: 1px dashed #333;
+    margin-top: 20px;
+}
+
+.hero-guest h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 1024px) {
+    .movie-results-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Small Tablet / Large Phone: Switch to 2 columns */
+@media (max-width: 768px) {
+    .movie-results-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* Mobile Phone: Switch to 1 column */
+@media (max-width: 480px) {
+    .movie-results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ====================================
+   LOGIN & SIGNUP COMMON STYLES
+   ==================================== */
+
+
+/* Card Container for the Form */
+.auth-card {
+    background-color:transparent; /* White card */
+    padding: 40px;
+    border-radius: 15px; /* Subtle rounding */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft, professional shadow */
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 0%;
+    margin-left: 25%;
+}
+
+.auth-card h2 {
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Input Field Styling (Matches Navbar Aesthetic) */
+.form-group input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid #000000; /* Dark underline aesthetic */
+    background: none;
+    font-size: 1rem;
+    color: #000000;
+    transition: border-bottom-color 0.3s;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-bottom-color: #007bff; /* Highlight focus with a color */
+}
+
+/* Submit Button Style (Black/White Contrast) */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000000; /* Black button */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 15px;
+}
+
+.submit-btn:hover {
+    background-color: #333333;
+}
+
+.submit-btn:active {
+    transform: scale(0.99);
+}
+
+/* Link Style (e.g., Forgot Password, Signup/Login prompt) */
+.auth-link-text {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.auth-link-text a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-link-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* ====================================
+   USER PROFILE STYLES
+   ==================================== */
+/* ====================================
+   USER PROFILE STYLES (Glassmorphism)
+   ==================================== */
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 36px 18px;
+    background: transparent; /* Allows dynamic body bg to show */
+    min-height: calc(100vh - 120px);
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Glass Card */
+.profile-card {
+    width: 100%;
+    max-width: 980px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 28px;
+    
+    /* GLASS EFFECT */
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    
+    border-radius: 20px;
+    padding: 35px;
+    box-sizing: border-box;
+    align-items: start;
+    color: #ffffff;
+}
+
+/* Left column: identity */
+.profile-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* Subtle divider */
+}
+
+/* Avatar container with Neon Gradient Ring */
+.profile-avatar {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    padding: 5px; /* ring thickness */
+    /* Neon Gradient Ring */
+    background: conic-gradient(from 180deg at 50% 50%, #007bff, #b042ff, #007bff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Inner avatar image */
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    /* Dark border to separate from ring */
+    border: 5px solid #1a1a1a; 
+    display: block;
+}
+
+/* Username and meta */
+.profile-identity h2 {
+    margin: 15px 0 5px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.member-since {
+    margin: 0;
+    color: #aaaaaa;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+/* Buttons (Edit / Change Picture) */
+.submit-btn {
+    /* Keeping consistency with your global button styles */
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; /* For the 'Edit' anchor tag */
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Upload label styled as button (Secondary Style) */
+.file-upload-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    
+    /* Dark Glass Button */
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.file-upload-label:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Right column: details */
+.profile-details {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Inner Glass Cards for Details */
+.detail-group {
+    background: rgba(255, 255, 255, 0.03); /* Very subtle overlay */
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-group h3 {
+    margin: 0 0 15px;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-group h3 i {
+    color: #007bff; /* Icon Accent Color */
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: #cccccc; /* Softer white for values */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item strong {
+    color: #ffffff; /* Bright white for labels */
+    font-weight: 600;
+}
+
+/* Responsive: Collapse to single column */
+@media (max-width: 880px) {
+    .profile-card {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .profile-identity {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 30px;
+    }
+    
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Mobile Tweaks */
+@media (max-width: 480px) {
+    .profile-container { padding: 20px 10px; }
+    .profile-card { padding: 25px 20px; }
+    
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+/* ====================================
+   WATCHLIST PAGE STYLES
+   ==================================== */
+
+.watchlist-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.watchlist-heading {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.watchlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.watchlist-item-card {
+    background-color: #ffffff; /* White card */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    transition: transform 0.2s;
+}
+
+.watchlist-item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-poster {
+    width: 100px; /* Fixed width for the poster */
+    height: 150px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.card-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-poster {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 10px;
+}
+
+.card-details {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.card-details h3 {
+    font-size: 1.1rem;
+    margin: 0 0 5px 0;
+    color: #000000;
+}
+
+.release-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.remove-btn {
+    background-color: #dc3545; /* Red color for removal action */
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
+}
+
+.empty-watchlist {
+    text-align: center;
+    padding: 60px;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.empty-watchlist p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+
+/* ====================================
+   RATING MODAL STYLES
+   ==================================== */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; /* Must be high to overlay everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover {
+    color: #000;
+}
+.star-rating-icons {
+    font-size: 2rem;
+    cursor: pointer;
+    margin: 20px 0;
+}
+.star {
+    padding: 0 5px;
+    color: #ccc; /* Default grey color */
+    transition: color 0.2s;
+}
+/* Styles for the new watchlist elements */
+.mark-watched-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+.watched-status {
+    color: #28a745;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   PREMIUM RATING MODAL (Fail-Safe Centering)
+   ========================================= */
+
+/* 1. The Container (Overlay) */
+.rating-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    
+    /* We don't rely on flex here anymore because JS might break it */
+    display: none; /* JS will toggle this to block or flex */
+}
+
+/* 2. Dark Backdrop */
+.rating-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1;
+}
+
+/* 3. The Card (The Centering Magic Happens Here) */
+.rating-modal-content {
+    /* 💥 FORCE CENTER using Absolute Positioning 💥 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Moves it back by 50% of its own width/height */
+    
+    z-index: 2;
+    width: 90%;
+    max-width: 420px;
+    margin: 0; /* Reset margins */
+    
+    /* Design Styles */
+    background: rgba(30, 30, 30, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    color: #fff;
+    
+    /* Animation: We add the slide-up to the transform */
+    animation: centerPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Updated Animation to preserve the centering transform */
+@keyframes centerPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%) scale(0.9); /* Start slightly higher */
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1); /* Land in dead center */
+    }
+}
+
+/* LOGIN AND LOGOUT PAGE STYLES */
+/* static/css/login.css
+   Login page styled to match the profile look & feel.
+*/
+
+:root{
+  --bg-start: #f7fbff;
+  --card-bg: #ffffff;
+  --accent-1: #7b61ff;
+  --accent-2: #00b4d8;
+  --muted: #64748b;
+  --text: #071135;
+  --border: rgba(15,23,42,0.03);
+  --shadow: 0 10px 30px rgba(16,24,40,0.06);
+  --radius: 14px;
+}
+
+/* =========================================
+   LOGIN & SIGNUP PAGE STYLES
+   ========================================= */
+
+
+/* The Wrapper: Controls the Positioning */
+.login_signup {
+    display: flex;
+    justify-content: center; /* Centers Horizontally */
+    align-items: center;     /* Centers Vertically */
+    min-height: 85vh;        /* Takes up 85% of screen height so vertical centering works */
+    width: 100%;             /* Ensures full width */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* The Card: The Glass Box */
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    
+    /* 💥 CRITICAL FIX: Reset margins so Flexbox can center it 💥 */
+    margin: 0; 
+
+    /* Glassmorphism Styles */
+    background: rgba(20, 20, 20, 0.6); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+    
+    border-radius: 20px;
+    padding: 40px;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+/* ... Keep the rest of your styles (h2, inputs, buttons) the same ... */
+
+/* Submit */
+.submit-btn {
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:10px;
+  border:none;
+  background: linear-gradient(90deg, var(--accent-1), #5e9ff8);
+  color: #fff;
+  font-weight:700;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(16,24,40,0.12); }
+
+/* Helper links */
+.auth-link-text { text-align:center; margin-top:14px; color:var(--muted); font-size:0.92rem; }
+.auth-link-text a { color:var(--accent-1); font-weight:600; text-decoration:none; }
+.auth-link-text a:hover { text-decoration:underline; }
+
+/* Non-field error block */
+.form-errors { background:#fff8f0; border:1px solid #ffe6d6; padding:10px; border-radius:8px; color:#8a3b00; margin-bottom:12px; }
+
+/* Responsive */
+@media (max-width:480px){
+  .auth-card { padding:22px; margin:0 12px; }
+  .auth-card h2 { font-size:1.25rem; }
+}
+
+
+/* signup-unique.css
+   Distinct signup styles — avoids conflict with login CSS
+   Attach this only to signup.html (use class changes below)
+*/
+
+/* static/css/signup-unique.css
+   Spacious signup style matching profile visual language.
+*/
+
+:root{
+  --bg-start: #f7fbff;
+  --card-bg: #ffffff;
+  --accent-1: #7b61ff;
+  --accent-2: #00b4d8;
+  --muted: #64748b;
+  --text: #071135;
+  --border: rgba(15,23,42,0.03);
+  --shadow: 0 14px 40px rgba(16,24,40,0.06);
+  --radius: 14px;
+}
+
+/* Wrapper */
+.signup-page {
+  min-height: calc(100vh - 120px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 40px 18px;
+
+  box-sizing: border-box;
+  font-family: "Poppins", Inter, sans-serif;
+}
+
+/* Card: centered single column */
+.signup-card {
+  width:100%;
+  max-width:520px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  animation: fadeUp .36s ease;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(12px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+/* Title */
+.auth-title {
+  font-size:1.5rem;
+  font-weight:700;
+  color: var(--text);
+  text-align:center;
+  margin-bottom:18px;
+}
+.auth-title i { color: var(--accent-1); margin-left:6px; }
+
+/* Messages */
+.messages { margin-bottom:12px; }
+.message { padding:10px 12px; border-radius:8px; margin-bottom:8px; font-weight:600; }
+.message.success { background:#e9fbf1; color:#065c37; }
+.message.error { background:#fff4f4; color:#8a1b23; }
+
+/* Form spacing */
+.auth-form { margin-top:6px; }
+.form-two-col { display:flex; gap:14px; margin-bottom:16px; }
+.form-two-col .form-group { flex:1; }
+.form-group { margin-bottom:16px; }
+.form-group label { display:block; margin-bottom:6px; color:var(--muted); font-size:0.95rem; }
+.form-group input {
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#fbfdff;
+  font-size:0.95rem;
+  box-sizing:border-box;
+  transition: box-shadow .12s ease, border-color .12s ease;
+}
+.form-group input:focus {
+  outline:none;
+  border-color: var(--accent-1);
+  box-shadow: 0 10px 28px rgba(123,97,255,0.10);
+}
+
+/* Submit */
+.submit-btn {
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  background: linear-gradient(90deg, var(--accent-1), #5e9ff8);
+  color: #fff;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:6px;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(16,24,40,0.12); }
+
+/* Bottom link */
+.auth-link-text { text-align:center; margin-top:18px; color:var(--muted); }
+.auth-link-text a { color:var(--accent-1); font-weight:600; text-decoration:none; }
+.auth-link-text a:hover { text-decoration:underline; }
+
+/* Responsive */
+@media (max-width:720px) {
+  .form-two-col { flex-direction:column; }
+  .signup-card { padding:28px 20px; }
+}
+@media (max-width:480px) {
+  .signup-card { padding:22px 16px; }
+  .auth-title { font-size:1.25rem; }
+}
+
+
+/* search suggestions */
+.search-suggestions {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+  width: 200%; /* 20% wider than search bar */
+  transform: translateX(-10%); /* center it */
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid rgba(15,23,42,0.06);
+}
+.search-suggestions .suggestion-item:hover {
+  background: rgba(123,97,255,0.06);
+}
+.search-suggestions .suggestion-title { font-weight:600; color:#071135; }
+.search-suggestions .suggestion-meta { color:#64748b; font-size:12px; margin-top:4px; }
+
+
+
+/* =========================================
+   SIGNUP SPECIFIC STYLES
+   ========================================= */
+
+/* Two Column Layout for Names and Passwords */
+.form-two-col {
+    display: flex;
+    gap: 20px; /* Space between the two inputs */
+}
+
+.form-two-col .form-group {
+    flex: 1; /* Both inputs take equal width */
+    margin-bottom: 25px; /* Match standard form-group margin */
+}
+
+/* On Mobile, stack them vertically */
+@media (max-width: 480px) {
+    .form-two-col {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    /* Ensure the wider card fits on mobile */
+    .auth-card {
+        padding: 30px 20px;
+    }
+}
+
+
+/* =========================================
+   EDIT PROFILE PAGE (Unique Namespace: ep-)
+   ========================================= */
+
+/* Wrapper to center the card on the page */
+.ep-page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 80vh;
+}
+
+/* The Glass Card */
+.ep-container {
+    width: 100%;
+    max-width: 850px;
+    
+    /* Glassmorphism */
+    background: rgba(20, 20, 20, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    
+    border-radius: 20px;
+    padding: 40px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Title */
+.ep-title {
+    margin: 0 0 25px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+/* Form Layout */
+.ep-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ep-grid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Inputs & Labels */
+.ep-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ep-input-group label {
+    font-size: 0.9rem;
+    color: #ccc;
+    font-weight: 500;
+}
+
+/* Targeting Django Rendered Inputs */
+.ep-container input[type="text"],
+.ep-container input[type="email"],
+.ep-container textarea,
+.ep-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05); /* Dark transparent */
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.ep-container input:focus,
+.ep-container textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
+}
+
+.ep-container textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Divider */
+.ep-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+/* Profile Section (Image + Bio) */
+.ep-profile-section {
+    display: flex;
+    gap: 30px;
+}
+
+/* Image Column */
+.ep-image-col {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ep-avatar-wrapper {
+    width: 100%;
+    aspect-ratio: 1/1; /* Keeps it square */
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: #000;
+}
+
+#ep-image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* File Input Styling */
+.ep-file-input-wrapper input[type="file"] {
+    font-size: 0.85rem;
+    color: #aaa;
+    width: 100%;
+}
+
+/* Details Column */
+.ep-details-col {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Buttons */
+.ep-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.ep-btn {
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+}
+
+.ep-btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.ep-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+}
+
+.ep-btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ccc;
+}
+
+.ep-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: #fff;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .ep-grid-row {
+        grid-template-columns: 1fr; /* Stack inputs */
+    }
+    
+    .ep-profile-section {
+        flex-direction: column; /* Stack image on top of bio */
+    }
+    
+    .ep-image-col {
+        width: 100%;
+        align-items: center;
+    }
+    
+    .ep-avatar-wrapper {
+        width: 150px; /* Smaller image on mobile */
+    }
+}
+
+
+
+
+

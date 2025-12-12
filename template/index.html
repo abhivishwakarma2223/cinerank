@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="recommendations-container container">
+  {% if request.user.is_authenticated %}
+    {% if recommendations %}
+      <section class="section-header">
+        <h2 class="section-title">Recommended for you</h2>
+        <p class="section-sub muted">Personal picks based on your activity</p>
+      </section>
+
+      <div class="movie-results-grid">
+        {% for movie in recommendations|slice:":20" %}
+          <article class="movie-card" data-movie-id="{{ movie.id }}">
+            
+            <!-- Poster area -->
+            <div class="poster">
+              {% if movie.poster_path %}
+                <img loading="lazy" src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                     alt="{{ movie.title }} poster" onerror="this.onerror=null;">
+              {% else %}
+                <div class="placeholder">No Image</div>
+              {% endif %}
+
+              <!-- small badges -->
+              {% if movie.vote_average %}
+                <div class="rating-badge">
+                  <i class="fas fa-star"></i> {{ movie.vote_average|floatformat:1 }}
+                </div>
+              {% endif %}
+
+              <div class="play-badge" title="Preview (open details)">
+                <i class="fas fa-play"></i>
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div class="movie-info">
+              <h4 title="{{ movie.title }}">{{ movie.title|truncatechars:42 }}</h4>
+              <div class="meta">
+                <span class="small muted">{{ movie.release_date|default:"N/A"|slice:":4" }}</span>
+                <span class="small muted">•</span>
+                <span class="small muted">TMDB {{ movie.vote_average|default:"-" }}</span>
+              </div>
+
+              <p class="muted small">{{ movie.overview|default:"No description available."|truncatechars:110 }}</p>
+
+              <!-- action bar -->
+              <div class="actions">
+                <button class="btn" 
+                        data-tmdb-id="{{ movie.id }}"
+                        data-title="{{ movie.title }}"
+                        data-poster-path="{{ movie.poster_path|default:'' }}"
+                        data-release-date="{{ movie.release_date|default:'' }}"
+                        onclick="handleWatchlistToggle(this, 'add')">
+                  <i class="fas fa-plus"></i> Add to Watchlist
+                </button>
+
+        <a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank" rel="noopener" class="btn ghost">
+            <i class="fas fa-info-circle"></i> Details
+        </a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+    {% else %}
+      <div class="empty-reco">
+        <p class="section-sub">Start rating movies (4 or 5 stars) to unlock personalized recommendations.</p>
+      </div>
+    {% endif %}
+
+  {% else %}
+    <div class="hero-guest">
+      <h2>Welcome to CineRank</h2>
+      <p class="muted">Log in or sign up to get personalized movie recommendations.</p>
+      <div style="margin-top:14px;">
+        <a href="{% url 'login' %}" class="btn">Login</a>
+        <a href="{% url 'signup' %}" class="btn ghost">Sign up</a>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
