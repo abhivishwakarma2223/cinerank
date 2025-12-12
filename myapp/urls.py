@@ -13,7 +13,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
     path('logout/', views.logout, name='logout'),
- 
+    path("edit-profile/", views.edit_profile, name="edit_profile"),
    
 
     # keep profile_update as a separate route until we confirm everything

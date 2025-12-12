@@ -655,4 +655,33 @@ def get_movie_data(query):
 
 
 
+@login_required
+def edit_profile(request):
+    # ensure profile instance exists
+    try:
+        profile = request.user.profile  # expects related_name='profile'
+    except profile_pic.DoesNotExist:
+        profile = profile_pic.objects.create(user=request.user)
+
+    if request.method == 'POST':
+        uform = UserUpdateForm(request.POST, instance=request.user)
+        pform = ProfileForm(request.POST, request.FILES, instance=profile)
+
+        if uform.is_valid() and pform.is_valid():
+            uform.save()
+            pform.save()
+            messages.success(request, 'Profile updated successfully.')
+            return redirect('profile')  # or 'edit_profile' if you want to stay
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        uform = UserUpdateForm(instance=request.user)
+        pform = ProfileForm(instance=profile)
+
+    return render(request, 'edit_profile.html', {
+        'uform': uform,
+        'pform': pform,
+    })
+
+
 
